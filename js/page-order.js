@@ -1,0 +1,5 @@
+'use strict';
+// page-order.js: shared browser scripts loaded in index.html order.
+function snapshot(){history.push({pages:pages.map(p=>({...p})),active});if(history.length>25)history.shift()}
+function undo(){if(busy||!history.length)return;let h=history.pop();pages=h.pages;active=h.active;sound('undo');draw();if($('preview').open)showLarge();notify('Change undone')}
+function action(a,id){if(busy)return;if(a==='view'){openPage(id);return}if(a==='move'){moveId=id;let sel=$('destination');sel.replaceChildren();pages.forEach((p,i)=>{if(p.id===id)return;let o=new Option(`Page ${i+1} · ${sources.get(p.source).name}`,p.id);sel.add(o)});sel.add(new Option('At the end','end'));$('moveDialog').showModal();return}let i=pages.findIndex(p=>p.id===id);if(i<0)return;snapshot();if(a==='rotate'){pages[i].rotation=(pages[i].rotation+90)%360;sound('move')}if(a==='duplicate'){let copy={...pages[i],id:String(++seq)};pages.splice(i+1,0,copy);active=copy.id;sound('add')}if(a==='delete'){pages.splice(i,1);if(active===id)active=pages[Math.min(i,pages.length-1)]?.id||null;sound('delete');notify('Page removed. Undo is available.')}draw();if($('preview').open)showLarge()}

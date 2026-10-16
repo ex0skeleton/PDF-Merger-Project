@@ -1,0 +1,3 @@
+'use strict';
+// sounds.js: shared browser scripts loaded in index.html order.
+function sound(kind){if(!sounds)return;try{audio??=new(window.AudioContext||window.webkitAudioContext)();audio.resume();const notes={add:[523,659,784],delete:[440,330],move:[660,880],done:[523,659,784,1047],download:[784,1047,1319],click:[620],undo:[392,523]}[kind]||[620];notes.forEach((f,i)=>{let o=audio.createOscillator(),g=audio.createGain(),t=audio.currentTime+i*.075;o.type='sine';o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.085,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+.14);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+.15)})}catch{}}

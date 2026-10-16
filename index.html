@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f57436"><title>Pagecraft · PDF Merger</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"></head><body>
+<header><div class="brand"><span class="mark">▤</span>Pagecraft<span style="color:var(--orange)">.</span></div><button id="sound" aria-pressed="true">♫ Sound on</button></header>
+<main><div class="eyebrow">YOUR PAGES. YOUR ORDER.</div><h1>A little rearranging.<br>A perfect <span>PDF.</span></h1><p class="intro muted">Bring your PDFs together. Preview, rotate, duplicate and arrange every page, then merge them into one clean document.</p>
+<section class="drop" id="drop"><div class="uploadicon">↥</div><button class="primary" id="add">＋ Add PDF files</button><p>or drop your PDFs here · select multiple files</p><small>Files are processed on your device. Nothing is uploaded.</small><input id="files" type="file" accept="application/pdf,.pdf" multiple hidden></section>
+<div id="progressWrap"><span id="progressText" class="hint"></span><progress id="progress" max="100" value="0"></progress></div>
+<div class="toolbar"><strong id="count">Your workspace</strong><button id="undo" disabled>↶ Undo</button><button id="clear" disabled>Clear all</button></div><p class="hint muted">Drag the ⠿ handle to reorder, including on mobile. Use ↗ to move before any page. Tap a page or its eye to open the full viewer.</p><div class="grid" id="grid"></div>
+</main><footer class="bottom"><div><input id="filename" value="merged-document" aria-label="Output filename"><button id="merge" class="primary" disabled>Merge & download ↓</button><span class="status muted" id="status" role="status">Ready when you are.</span></div></footer>
+<dialog id="preview"><div class="viewer"><div class="vheader"><button id="prev" aria-label="Previous page">←</button><strong id="vtitle"></strong><button id="next" aria-label="Next page">→</button><button id="close" aria-label="Close viewer">✕</button></div><div class="stage" id="stage"><canvas id="large"></canvas></div><div class="vtools"><button data-va="rotate">↻ Rotate</button><button data-va="duplicate">⧉ Duplicate</button><button data-va="move">↗ Move</button><button data-va="delete">⌫ Delete</button><button id="vundo">↶ Undo</button><button id="vadd">＋ Add PDFs</button><button id="vmerge" class="primary">Merge ↓</button></div><div class="strip" id="strip"></div></div></dialog>
+<dialog id="moveDialog"><h3>Move page</h3><p class="muted">Place this page before:</p><select id="destination" aria-label="Move before page"></select><button id="moveCancel">Cancel</button> <button id="moveApply" class="primary">Move page</button></dialog><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<script src="js/state.js"></script>
+<script src="js/sounds.js"></script>
+<script src="js/page-order.js"></script>
+<script src="js/pdf-tools.js"></script>
+<script src="js/viewer.js"></script>
+<script src="js/workspace.js"></script>
+<script src="js/app.js"></script></body></html>
